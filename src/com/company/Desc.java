@@ -33,7 +33,7 @@ public class Desc {
             }
         }
 
-      /* for (int i = 0; i < SIZE; i++) {
+     for (int i = 0; i < SIZE; i++) {
             map[1][i] = 'p';
             map[6][i] = 'P';
         }
@@ -56,9 +56,9 @@ public class Desc {
         map[0][3] = 'q';
         map[0][4] = 'k';
         map[7][3] = 'Q';
-        map[7][4] = 'K';*/
+        map[7][4] = 'K';
 
-        map[1][5] = 't'; // todo for mat bleak
+     /*  map[1][5] = 't'; // todo for mat bleak
 
         map[0][0] = 't';
         map[0][7] = 't';
@@ -78,7 +78,7 @@ public class Desc {
         map[0][3] = 'q';
         map[0][4] = 'k';
         map[3][7] = 'Q';
-        map[7][4] = 'K';
+        map[7][4] = 'K';*/
 
 
     }
@@ -108,10 +108,6 @@ public class Desc {
 
 }
 
-
-//TODO  роккер
-
-//3. пешка доходит до конца и не становится ферзем
 
 
 

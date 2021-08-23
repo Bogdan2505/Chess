@@ -58,7 +58,7 @@ public class Main {
 
                                     if (map[indexFiguresLines][indexFiguresCollum] == 'K') {
                                         if (indexFiguresLinesWill == 7 && indexFiguresCollumWill == 2 && !LOCATION_KING_WHITE && !LOCATION_TOUR_WHITE_LEFT &&
-                                                map[7][1] == DOT_EMPTY && map[7][2] == DOT_EMPTY && map[7][3] == DOT_EMPTY ){
+                                                map[7][1] == DOT_EMPTY && map[7][2] == DOT_EMPTY && map[7][3] == DOT_EMPTY) {
 
                                             map[indexFiguresLinesWill][indexFiguresCollumWill] = 'K';
                                             map[7][4] = DOT_EMPTY;
@@ -68,15 +68,15 @@ public class Main {
                                             countOfMoves++;
                                             LOCATION_KING_WHITE = true;
                                         }
-                                    }else {
+                                    } else {
 
-                                        if (map[indexFiguresLines][indexFiguresCollum] == 'K' ){
+                                        if (map[indexFiguresLines][indexFiguresCollum] == 'K') {
                                             LOCATION_KING_WHITE = true;
                                         }
-                                        if ( map[indexFiguresLines][indexFiguresCollum] == 'T'){
-                                            if (indexFiguresCollum == 2){
+                                        if (map[indexFiguresLines][indexFiguresCollum] == 'T') {
+                                            if (indexFiguresCollum == 2) {
                                                 LOCATION_TOUR_WHITE_LEFT = true;
-                                            }else{
+                                            } else {
                                                 LOCATION_TOUR_WHITE_RIGHT = true;
                                             }
                                         }
@@ -117,7 +117,7 @@ public class Main {
                                         map[indexFiguresLinesWill][indexFiguresCollumWill] = map[indexFiguresLines][indexFiguresCollum];
                                         map[indexFiguresLines][indexFiguresCollum] = DOT_EMPTY;
 
-                                        if(indexFiguresLinesWill == 0){
+                                        if (indexFiguresLinesWill == 0) {
                                             chengFiguresForWhite(indexFiguresLinesWill, indexFiguresCollumWill);
                                         }
 
@@ -137,7 +137,10 @@ public class Main {
 
                                 printMap();
 
-                                if (shahBleak()) {
+                                if (shahWhite()) {
+                                    System.out.println("\n SHAH TO WHITE \n");
+                                }
+                                if(shahBleak()) {
                                     System.out.println("\n SHAH TO BLEAK \n");
                                 }
 
@@ -183,6 +186,7 @@ public class Main {
                             if (canToGo(map[indexFiguresLines][indexFiguresCollum], indexFiguresLines, indexFiguresCollum,
                                     indexFiguresLinesWill, indexFiguresCollumWill)) {
                                 if (!shahBleak()) {
+
                                     if (map[indexFiguresLines][indexFiguresCollum] == 'k') {
 
                                         LOCATION_KING_BLEAK_I = indexFiguresLinesWill;
@@ -220,7 +224,7 @@ public class Main {
                                         map[indexFiguresLinesWill][indexFiguresCollumWill] = map[indexFiguresLines][indexFiguresCollum];
                                         map[indexFiguresLines][indexFiguresCollum] = DOT_EMPTY;
 
-                                        if(indexFiguresLinesWill == 0){
+                                        if (indexFiguresLinesWill == 0) {
                                             chengFiguresForBleak(indexFiguresLinesWill, indexFiguresCollumWill);
                                         }
 
@@ -244,8 +248,21 @@ public class Main {
                                     System.out.println("\n SHAH TO WHITE \n");
                                 }
 
+                                if(shahBleak()) {
+                                    System.out.println("\n SHAH TO BLEAK \n");
+                                }
+
                             }
                         }
+
+                      /*  if (shahBleak()) {
+                            System.out.println("\n SHAH TO BLEAK \n");
+                        }
+
+                        if (shahWhite()) {
+                            System.out.println("\n SHAH TO WHITE \n");
+                        }
+*/
 
                     } else {
                         System.out.println(" is not true coordinates for bleak");
