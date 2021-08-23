@@ -280,43 +280,87 @@ public class gameMoves {
             if (map[iWil][jWil] == DOT_EMPTY || BLAKE.indexOf(map[iWil][jWil]) != -1) {
 
                 if (jNow < jWil && iNow > iWil) {
-                    for (int i = 1; i < iNow - i; i++) {
-                        if (map[iNow - i][jNow + i] != DOT_EMPTY) {
-                            return false;
-                        }
-                    }
-                   /* for (int i = iNow - 1; i > iWil; i--) {
-                        for (int j = jNow + 1; j < jWil; j++) {
-                            if (map[i][j] != DOT_EMPTY) {
+
+                    if ( jNow < iNow) {
+                        for (int i = 1; i < jNow; i++) {
+                            if (map[iNow - i][jNow + i] != DOT_EMPTY) {
                                 return false;
                             }
+                        }
+                    }else {
+                        for (int i = 1; i < iWil; i++) {
+                            if (map[iNow - i][jNow + i] != DOT_EMPTY) {
+                                return false;
+                            }
+                        }
+                    }
+                 /*   for (int i = 1; i < iNow - i; i++) {
+                        if (map[iNow - i][jNow + i] != DOT_EMPTY) {
+                            return false;
                         }
                     }*/
                 }
 
                 if (jNow > jWil && iNow > iWil) {
-                    for (int i = 1; i < iNow - i; i++) {
-                        if (map[iNow - i][jNow - i] != DOT_EMPTY) {
-                            return false;
+                    if ( jNow < iNow) {
+                        for (int i = 1; i < jNow - jWil; i++) { // todo удалалил -i (in iNow - i)
+                            if (map[iNow - i][jNow - i] != DOT_EMPTY) {
+                                return false;
+                            }
+                        }
+                    }else {
+                        for (int i = 1; i < iNow - iWil; i++) {
+                            if (map[iNow - i][jNow - i] != DOT_EMPTY) {
+                                return false;
+                            }
                         }
                     }
                 }
 
                 if (jNow < jWil && iNow < iWil) {
-                    for (int i = 1; i < iWil - i; i++) {
+
+                    if ( jNow < iNow) {
+                        for (int i = 1; i < jNow; i++) {
+                            if (map[iNow + i][jNow + i] != DOT_EMPTY) {
+                                return false;
+                            }
+                        }
+                    }else {
+                        for (int i = 1; i < iWil; i++) {
+                            if (map[iNow + i][jNow + i] != DOT_EMPTY) {
+                                return false;
+                            }
+                        }
+                    }
+
+                    /*for (int i = 1; i < iWil - i; i++) {
                         if (map[iNow + i][jNow + i] != DOT_EMPTY) {
                             return false;
                         }
-                    }
+                    }*/
                 }
 
                 if (jNow > jWil && iNow < iWil) {
 
-                    for (int i = 1; i < jWil - i; i++) {
+                    if ( jNow < iNow) {
+                        for (int i = 1; i < jNow; i++) {
+                            if (map[iNow + i][jNow - i] != DOT_EMPTY) {
+                                return false;
+                            }
+                        }
+                    }else {
+                        for (int i = 1; i < iWil; i++) {
+                            if (map[iNow + i][jNow - i] != DOT_EMPTY) {
+                                return false;
+                            }
+                        }
+                    }
+
+                   /* for (int i = 1; i < jWil - i; i++) {
                         if (map[iNow - i][jNow + i] != DOT_EMPTY) {
                             return false;
                         }
-                    }
+                    }*/
                     /*for (int i = iNow + 1; i < iWil; i++) {
                         for (int j = jNow - 1; j > jWil; j--) {
                             if (map[i][j] != DOT_EMPTY) {
@@ -449,6 +493,8 @@ public class gameMoves {
     }
 
     public static boolean matBleak() {
+
+        //canToGoWhenShahBleak('k', LOCATION_KING_BLEAK_I, LOCATION_KING_BLEAK_J );
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (BLAKE.indexOf(map[i][j]) != -1 && canToGoWhenShahBleak(map[i][j], i, j)) {
@@ -526,8 +572,17 @@ public class gameMoves {
                     if (canToGo(ch, iNow, jNow, i, j)) {
                         char ti = map[iNow][jNow];
                         char tj = map[i][j];
+                        int iK = LOCATION_KING_BLEAK_I;
+                        int jK= LOCATION_KING_BLEAK_J;
+
+                        if ( map[iNow][jNow] == 'k'){
+                            LOCATION_KING_BLEAK_I = i;
+                            LOCATION_KING_BLEAK_J = j;
+                        }
+
                         map[i][j] = map[iNow][jNow];
                         map[iNow][jNow] = DOT_EMPTY;
+
                         if (!shahBleak()) {
                             map[iNow][jNow] = ti;
                             map[i][j] = tj;
@@ -535,18 +590,31 @@ public class gameMoves {
                         } else {
                             map[iNow][jNow] = ti;
                             map[i][j] = tj;
+                            LOCATION_KING_BLEAK_I = iK;
+                            LOCATION_KING_BLEAK_J = jK;
                         }
                     }
                 }
             }
+
         } else {
             for (int i = 0; i < SIZE; i++) {
                 for (int j = 0; j < SIZE; j++) {
                     if (canToGo(ch, iNow, jNow, i, j)) {
+
                         char ti = map[iNow][jNow];
                         char tj = map[i][j];
+                        int iK = LOCATION_KING_BLEAK_I;
+                        int jK= LOCATION_KING_BLEAK_J;
+
+                        if ( map[iNow][jNow] == 'k'){
+                            LOCATION_KING_BLEAK_I = i;
+                            LOCATION_KING_BLEAK_J = j;
+                        }
+
                         map[i][j] = map[iNow][jNow];
                         map[iNow][jNow] = DOT_EMPTY;
+
                         if (!shahBleak()) {
                             map[iNow][jNow] = ti;
                             map[i][j] = tj;
@@ -554,6 +622,8 @@ public class gameMoves {
                         } else {
                             map[iNow][jNow] = ti;
                             map[i][j] = tj;
+                            LOCATION_KING_BLEAK_I = iK;
+                            LOCATION_KING_BLEAK_J = jK;
                         }
                     }
                 }
